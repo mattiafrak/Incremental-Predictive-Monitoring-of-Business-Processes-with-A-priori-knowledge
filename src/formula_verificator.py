@@ -27,9 +27,26 @@ def verify_with_data(model_file, trace_id, activities, groups, times, prefix=0):
 
     return verificator_app.isTraceWithDataViolated(model_file, trace_id, activities_java, groups_java, times_java)
 
+def verify_with_elapsed_time(model_file, trace_id, activities, groups, elapsed_times, times, prefix=0):
+
+    activities_java = gateway.jvm.java.util.ArrayList()
+    groups_java = gateway.jvm.java.util.ArrayList()
+    elapsed_times_java = gateway.jvm.java.util.ArrayList()
+    times_java = gateway.jvm.java.util.ArrayList()
+
+    for i in range(prefix, len(activities)):
+        activities_java.append(str(get_int_from_unicode(activities[i])))
+        groups_java.append(str(get_int_from_unicode(groups[i])))
+        elapsed_times_java.append(str(get_int_from_unicode(elapsed_times[i])))
+        times_java.append(times[i])
+    if not activities_java:
+        return False
+
+    return verificator_app.isTraceWithElapsedTimeViolated(model_file, trace_id, activities_java, groups_java, elapsed_times_java, times_java)
+
 
 # noinspection PyProtectedMember
-def generate_xlog(traces_id, activities, groups, times):
+def generate_xlog(traces_id, activities, groups, elapsed_times, times):
     # Convert lists to Java compatible format
     traces_id_java = ListConverter().convert(traces_id, gateway._gateway_client)
 
@@ -43,12 +60,17 @@ def generate_xlog(traces_id, activities, groups, times):
         groups_java.append(ListConverter().convert(group, gateway._gateway_client))
     groups_java = ListConverter().convert(groups_java, gateway._gateway_client)
 
+    elapsed_times_java = []
+    for elapsed_time in elapsed_times:
+        elapsed_times_java.append(ListConverter().convert(elapsed_time, gateway._gateway_client))
+    elapsed_times_java = ListConverter().convert(elapsed_times_java, gateway._gateway_client)
+
     times_java = []
     for time in times:
         times_java.append(ListConverter().convert(time, gateway._gateway_client))
     times_java = ListConverter().convert(times_java, gateway._gateway_client)
 
-    verificator_app.generateXLog(traces_id_java, activities_java, groups_java, times_java)
+    verificator_app.generateXLog(traces_id_java, activities_java, groups_java, elapsed_times_java, times_java)
 
 
 def test_analysis():

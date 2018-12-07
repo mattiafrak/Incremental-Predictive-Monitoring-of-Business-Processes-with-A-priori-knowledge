@@ -26,8 +26,9 @@ def activate_settings(log_number, formula_type):
         eventlog = "10x5_1S.csv"
         # path_to_model_file = '/home/kaur/Documents/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-' \
         #                      'priori-knowledge/src/output_files/final_experiments/models/CF/10x5_1S/model_11-1.23.h5'
-        path_to_model_file = '/home/kaur/Documents/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-' \
-                             'priori-knowledge/src/output_files/final_experiments/models/CFR/10x5_1S/model_12-1.64.h5'
+        path_to_model_file_CF = '/Users/Mattia/Desktop/Stage FBK/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-priori-knowledge/src/output_files/final_experiments/models/CF/10x5_1S/model_02-1.38.h5'
+        path_to_model_file_CFR = ''
+        path_to_declare_model_file = '/Users/Mattia/Desktop/Stage FBK/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-priori-knowledge/src/declare_models/final_experiments/10x5_1S.xml'
         if formula_type == "STRONG":
             formula = " []( ( \"6\" -> <>( \"3\" ) ) )  /\ <>\"6\" "
         if formula_type == "WEAK":
@@ -154,16 +155,14 @@ def activate_settings(log_number, formula_type):
 
     elif log_number == 10:
         eventlog = "10x20_1S.csv"
-        path_to_model_file_CF = '/home/kaur/Documents/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-' \
-                             'priori-knowledge/src/output_files/final_experiments/models/CF/10x20_1S/model_00-0.99.h5'
-        path_to_model_file_CFR = '/home/kaur/Documents/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-' \
-                             'priori-knowledge/src/output_files/final_experiments/models/CFR/10x20_1S/model_00-1.55.h5'
-        path_to_declare_model_file = '/home/kaur/Documents/Incremental-Predictive-Monitoring-of-Business-Processes-' \
-                                     'with-A-priori-knowledge/src/declare_models/final_experiments/10x20_1S.xml'
+        path_to_model_file_CF = '/Users/Mattia/Desktop/Stage FBK/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-priori-knowledge/src/output_files/final_experiments/models/CF/10x20_1S/model_00-1.07.h5'
+        path_to_model_file_CFR = '/Users/Mattia/Desktop/Stage FBK/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-priori-knowledge/src/output_files/final_experiments/models/CFR/10x20_1S/model_01-1.55.h5'
+        path_to_model_file_CFRT = '/Users/Mattia/Desktop/Stage FBK/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-priori-knowledge/src/output_files/final_experiments/models/CFRT/10x20_1S/model_01-3.99.h5'
+        path_to_declare_model_file = '/Users/Mattia/Desktop/Stage FBK/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-priori-knowledge/src/declare_models/final_experiments/10x20_1S.xml'
         if formula_type == "STRONG":
             formula = " []( ( \"8\" -> <>( \"9\" ) ) )  /\ <>\"8\" "
         if formula_type == "WEAK":
-            formula = "<>(\"9\")"
+            formula = ""
 
         prefix_size_pred_from = 3
         prefix_size_pred_to = 7
@@ -337,25 +336,25 @@ def activate_settings(log_number, formula_type):
         prefix_size_pred_to = 7
 
     elif log_number == 21:
-        eventlog = "BPI2017_50k.csv"
-        path_to_model_file_CF = ''
-        path_to_model_file_CFR = '/home/kaur/Documents/Incremental-Predictive-Monitoring-of-Business-Processes-with-A' \
-                                 '-priori-knowledge/src/output_files/final_experiments/models/CFR/BPI2017_50k/' \
-                                 'model_14-2.26.h5'
-        path_to_declare_model_file = '/home/kaur/Documents/Incremental-Predictive-Monitoring-of-Business-Processes-' \
-                                     'with-A-priori-knowledge/src/declare_models/final_experiments/BPI2017_STRONG.xml'
-        if formula_type == "STRONG":
-            formula = " []( ( \"17\" -> <>( \"18\" ) ) )  /\ <>\"17\""
-        if formula_type == "WEAK":
-            formula = "<>(\"17\")"
+        eventlog = "BPI2017_train.csv"
+        path_to_model_file_CF = '/Users/Mattia/Desktop/Stage FBK/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-priori-knowledge/src/output_files/final_experiments/models/CF/BPI2017_train/model_77-1.50.h5'
+        path_to_model_file_CFR = '/Users/Mattia/Desktop/Stage FBK/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-priori-knowledge/src/output_files/final_experiments/models/CFR/BPI2017_train/model_30-4.91.h5'
+        path_to_declare_model_file = '/Users/Mattia/Desktop/Stage FBK/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-priori-knowledge/src/declare_models/final_experiments/BPI2017_train.xml'
+        #if formula_type == "STRONG":
+        #    formula = " []( ( \"7\" -> <>( \"8\" ) ) )  /\ <>\"7\""
+        #if formula_type == "WEAK":
+        #    formula = "<>(\"7\")"
+        formula=""
 
         prefix_size_pred_from = 6
         prefix_size_pred_to = 9
 
-    return eventlog, path_to_model_file_CF, path_to_model_file_CFR, path_to_declare_model_file, \
-        beam_size, prefix_size_pred_from, prefix_size_pred_to, formula
+
+    return eventlog, path_to_model_file_CF, path_to_model_file_CFR, path_to_model_file_CFRT, \
+          path_to_declare_model_file, \
+          beam_size, prefix_size_pred_from, prefix_size_pred_to, formula
 
 
-eventlog = "Hospital_log.csv"
+eventlog = "10x20_1S.csv"
 # path_to_declare_model_file = '/home/kaur/Documents/Incremental-Predictive-Monitoring-of-Business-Processes-with-A-' \
 #                              'priori-knowledge/src/declare_models/final_experiments/10x20_3W.xml'

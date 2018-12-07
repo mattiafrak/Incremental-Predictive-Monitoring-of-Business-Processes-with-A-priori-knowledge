@@ -53,7 +53,7 @@ def train():
             casestarttime = t
             lasteventtime = t
             lastcase = row[0]
-            if not firstline:  # here we actually add thesequences to the lists
+            if not firstline:  # here we actually add the sequences to the lists
                 lines.append(line)
                 timeseqs.append(times)
                 timeseqs2.append(times2)
